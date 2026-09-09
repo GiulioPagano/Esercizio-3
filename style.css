@@ -1,0 +1,430 @@
+/* 
+ * 1. VARIABILI E RESET
+ */
+:root {
+    --bg-color: #FAF6EE;
+    --text-dark: #1A1A1A;
+    --blue-dark: #1C355E;
+    --red-accent: #E63946;
+    --orange-accent: #F4A261;
+    --font-main: 'Montserrat', sans-serif;
+}
+
+/* Abilita lo scroll fluido tra le sezioni */
+html {
+    scroll-behavior: smooth;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-dark);
+    font-family: var(--font-main);
+    line-height: 1.6;
+    overflow-x: hidden; 
+}
+
+/* 
+ * 2. NAVBAR E FOOTER (Aggiunte per rendere il sito più completo)
+ */
+.navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background: #ffffff;
+    border-bottom: 3px solid var(--text-dark);
+    z-index: 1000;
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav-brand {
+    font-weight: 900;
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    color: var(--text-dark);
+    text-decoration: none;
+}
+
+.nav-links {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: var(--text-dark);
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+    color: var(--red-accent);
+}
+
+.site-footer {
+    background: var(--blue-dark);
+    color: #ffffff;
+    padding: 3rem 2rem;
+    text-align: center;
+    border-top: 3px solid var(--text-dark);
+    margin-top: 2rem;
+}
+
+.site-footer p {
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+/* 
+ * 3. TIPOGRAFIA DI BASE
+ */
+h1 {
+    font-size: clamp(2.5rem, 8vw, 6rem);
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: -2px;
+    line-height: 1.1;
+}
+
+h2 {
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: -1px;
+}
+
+h3 {
+    font-size: 1.5rem;
+    color: var(--blue-dark);
+    font-weight: 800;
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+}
+
+p {
+    font-size: 1.125rem;
+}
+
+/* 
+ * 4. STRUTTURA E COMPONENTI
+ */
+.container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 4rem 2rem;
+    position: relative;
+}
+
+/* Le forme geometriche decorative */
+.shape {
+    position: absolute;
+    z-index: -1;
+    transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* Effetto parallasse leggero al passaggio del mouse sulle sezioni */
+section:hover .shape {
+    transform: scale(1.05);
+}
+
+/* Stile ricorrente dei riquadri */
+.card {
+    background: #ffffff;
+    border: 3px solid var(--text-dark);
+    padding: 3rem;
+    position: relative;
+    z-index: 10;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Animazione di sollevamento sulle card al passaggio del mouse */
+.card:hover {
+    transform: translate(-5px, -5px);
+}
+
+.shadow-blue { box-shadow: 15px 15px 0px var(--blue-dark); }
+.shadow-blue:hover { box-shadow: 20px 20px 0px var(--blue-dark); }
+
+.shadow-orange { box-shadow: 15px 15px 0px var(--orange-accent); }
+.shadow-orange:hover { box-shadow: 20px 20px 0px var(--orange-accent); }
+
+.shadow-red { box-shadow: 15px 15px 0px var(--red-accent); }
+.shadow-red:hover { box-shadow: 20px 20px 0px var(--red-accent); }
+
+/* Titoli di sezione con barretta laterale */
+.section-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.vertical-bar {
+    width: 12px;
+    height: 50px;
+    display: inline-block;
+}
+.bar-red { background: var(--red-accent); }
+.bar-orange { background: var(--orange-accent); }
+.bar-blue { background: var(--blue-dark); }
+
+/* =========================================
+   SEZIONI SPECIFICHE
+   ========================================= */
+
+/* --- Slide 1: Hero --- */
+.hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    position: relative;
+    padding-top: 60px; /* Compensa l'altezza della navbar fixed */
+}
+
+.hero-content {
+    width: 100%;
+    position: relative;
+    z-index: 2;
+}
+
+.badge-box {
+    background: #ffffff;
+    border: 3px solid var(--text-dark);
+    display: inline-block;
+    padding: 0.5rem 1.5rem;
+    font-weight: 800;
+    font-size: clamp(1rem, 2vw, 1.2rem);
+    margin-bottom: 1.5rem;
+    text-transform: uppercase;
+}
+
+.title-box {
+    background: #ffffff;
+    border: 3px solid var(--text-dark);
+    padding: 1.5rem 2.5rem;
+    margin-bottom: 2rem;
+    display: inline-block;
+    /* Aggiunta un'ombra di base per dare tridimensionalità anche al titolo */
+    box-shadow: 8px 8px 0px var(--text-dark); 
+}
+
+.subtitle-box {
+    background: var(--blue-dark);
+    color: #ffffff;
+    padding: 1.5rem 2rem;
+    display: inline-block;
+    font-size: clamp(1.2rem, 3vw, 1.5rem);
+    font-weight: 600;
+    margin-left: -2rem; 
+    padding-left: 4rem;
+    border: 3px solid var(--text-dark);
+}
+
+/* Posizionamento forme geometriche Hero */
+.hero .circle-red {
+    width: clamp(250px, 40vw, 500px);
+    height: clamp(250px, 40vw, 500px);
+    background: var(--red-accent);
+    border-radius: 50%;
+    top: -5vh;
+    right: -5vw;
+}
+
+.hero .triangle-orange {
+    width: 0;
+    height: 0;
+    border-left: 15vw solid transparent;
+    border-right: 15vw solid transparent;
+    border-bottom: 30vw solid var(--orange-accent);
+    top: 25%;
+    right: 20%;
+    transform: rotate(15deg);
+}
+
+/* --- Slide 2 & 3: Sezioni Standard --- */
+.content-section {
+    position: relative;
+    margin-bottom: 4rem;
+    /* Offset per evitare che la navbar copra il titolo al click sull'ancora */
+    scroll-margin-top: 100px; 
+}
+
+.content-section .card {
+    max-width: 900px;
+}
+
+/* Forma Slide 2 */
+.neofite .half-circle-red {
+    width: 200px;
+    height: 400px;
+    background: var(--red-accent);
+    border-radius: 0 400px 400px 0; 
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+}
+.neofite:hover .half-circle-red {
+    transform: translateY(-50%) scale(1.05); /* Mantengo il translate Y altrimenti si rompe su hover */
+}
+
+/* Forma Slide 3 */
+.miliardi .circle-blue {
+    width: 300px;
+    height: 300px;
+    background: var(--blue-dark);
+    border-radius: 50%;
+    top: 10%;
+    right: 0;
+    transform: translateX(30%);
+}
+.miliardi:hover .circle-blue {
+    transform: translateX(30%) scale(1.05);
+}
+
+/* --- Slide 4: Rischi (Layout a griglia) --- */
+.rischi {
+    position: relative;
+    margin-bottom: 6rem;
+    scroll-margin-top: 100px;
+}
+
+.grid-2-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    position: relative;
+    z-index: 2;
+}
+
+.rischi .triangle-orange-bottom {
+    width: 0;
+    height: 0;
+    border-left: 150px solid transparent;
+    border-right: 150px solid transparent;
+    border-bottom: 250px solid var(--orange-accent);
+    bottom: -80px;
+    left: 5%;
+    transform: rotate(-25deg);
+}
+.rischi:hover .triangle-orange-bottom {
+    transform: rotate(-25deg) scale(1.05);
+}
+
+/* --- Slide 5: Complessità (Box centrato) --- */
+.complessita {
+    min-height: 80vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    text-align: center;
+    padding-bottom: 4rem;
+    scroll-margin-top: 100px;
+}
+
+.complessita .card {
+    max-width: 800px;
+    padding: 4rem 3rem;
+    margin: 0 auto;
+}
+
+.complessita h2 {
+    color: var(--text-dark);
+    margin-bottom: 1.5rem;
+}
+
+.complessita p {
+    font-size: clamp(1.2rem, 3vw, 1.5rem);
+    font-weight: 700;
+    color: var(--text-dark);
+}
+
+.complessita .circle-red {
+    width: clamp(200px, 30vw, 400px);
+    height: clamp(200px, 30vw, 400px);
+    background: var(--red-accent);
+    border-radius: 50%;
+    top: 10%;
+    left: -5%;
+}
+
+.complessita .square-blue {
+    width: clamp(150px, 25vw, 300px);
+    height: clamp(150px, 25vw, 300px);
+    background: var(--blue-dark);
+    bottom: 5%;
+    left: 5%;
+}
+
+/* =========================================
+   RESPONSIVE DESIGN (Smartphone / Tablet)
+   ========================================= */
+@media (max-width: 768px) {
+    .navbar {
+        padding: 1rem;
+    }
+    
+    .nav-links {
+        /* Nascondiamo i link di navigazione su mobile, lasciando solo il titolo fisso in alto */
+        display: none; 
+    }
+
+    .container {
+        padding: 3rem 1.5rem;
+    }
+    
+    .grid-2-col {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+    }
+
+    .subtitle-box {
+        margin-left: -1.5rem;
+        padding-left: 2rem;
+        width: calc(100% + 1.5rem); 
+    }
+
+    .card {
+        padding: 2rem 1.5rem;
+    }
+
+    /* Rimozione hover states su mobile per evitare glitch (sui touch screen l'hover è permanente post-tap) */
+    .card:hover {
+        transform: none;
+    }
+
+    .shadow-blue, .shadow-orange, .shadow-red {
+        box-shadow: 8px 8px 0px;
+    }
+    .shadow-blue { box-shadow: 8px 8px 0px var(--blue-dark); }
+    .shadow-orange { box-shadow: 8px 8px 0px var(--orange-accent); }
+    .shadow-red { box-shadow: 8px 8px 0px var(--red-accent); }
+
+    .shadow-blue:hover, .shadow-orange:hover, .shadow-red:hover {
+        box-shadow: 8px 8px 0px;
+    }
+
+    .hero .triangle-orange,
+    .neofite .half-circle-red,
+    .miliardi .circle-blue,
+    .rischi .triangle-orange-bottom,
+    .complessita .square-blue {
+        opacity: 0.4;
+    }
+    
+    .vertical-bar {
+        height: 40px;
+        width: 8px;
+    }
+}
